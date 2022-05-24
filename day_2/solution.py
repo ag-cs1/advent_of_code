@@ -21,8 +21,8 @@ def get_location(input):
     location[1] = commands_dict["down"] - commands_dict["up"]
     return location
     
+#part 1
 def main():
-    #PART 1
     commands = parse_text()
     location = get_location(commands)
     print(location[0] * location[1])

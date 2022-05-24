@@ -20,8 +20,8 @@ def get_location(input):
 
     return location
   
+#part 2
 def main():
-    #PART 1
     commands = parse_text()
     location = get_location(commands)
     print(location[0] * location[1])
