@@ -10,3 +10,10 @@ class Board():
     def __init__(self):
         self.total = 0
         self.grid = []
+
+    def print_board(self):
+        print("Print Board:")
+        for row in self.grid:
+            for space in row:
+                print(str(space.value) + " " + str(space.marked), end=" ")
+            print()
