@@ -5,14 +5,18 @@ def parse_text():
 
 # creates nested list [[0,0],[0,0]...]
 # each element represents position of gamma/epsilon str
+
+
 def init_occur_list(input):
     occur = []
     for i in input[:]:
-        occur.append([0,0])
+        occur.append([0, 0])
 
     return occur
 
 # update nested list with occurences of 0s and 1s
+
+
 def update_occurences(input, occur):
     for x in range(0, len(input)):
         if input[x] == "0":
@@ -21,13 +25,15 @@ def update_occurences(input, occur):
             occur[x][1] += 1
     return occur
 
+
 def get_occur(input):
     occur = init_occur_list(input[0])
-    
+
     for i in input:
         occur = update_occurences(i, occur)
 
     return occur
+
 
 def get_gamma_epsilon(occur):
     gamma = ""
@@ -42,10 +48,12 @@ def get_gamma_epsilon(occur):
 
     return gamma, epsilon
 
+
 def run_filter(pos, bit, nums):
     if len(nums) > 1:
         nums = list(filter(lambda x: x[pos] == bit, nums))
     return nums
+
 
 def get_ox_co2(occur, bin_nums, greater_bit, lesser_bit):
     res = bin_nums
@@ -59,18 +67,18 @@ def get_ox_co2(occur, bin_nums, greater_bit, lesser_bit):
 
     return res[0]
 
+
 def main():
-    #part 1
+    # part 1
     bin_nums = parse_text()
     occur = get_occur(bin_nums)
     gamma, epsilon = get_gamma_epsilon(occur)
     print(int(gamma, 2) * int(epsilon, 2))
 
-    #part 2
-    ox_gen= get_ox_co2(occur, bin_nums, "0", "1")
+    # part 2
+    ox_gen = get_ox_co2(occur, bin_nums, "0", "1")
     co2_scrub = get_ox_co2(occur, bin_nums, "1", "0")
     print(int(ox_gen, 2) * int(co2_scrub, 2))
-
 
 
 if __name__ == "__main__":
