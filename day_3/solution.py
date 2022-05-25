@@ -60,12 +60,13 @@ def get_ox_co2(occur, bin_nums, greater_bit, lesser_bit):
     return res[0]
 
 def main():
+    #part 1
     bin_nums = parse_text()
     occur = get_occur(bin_nums)
     gamma, epsilon = get_gamma_epsilon(occur)
     print(int(gamma, 2) * int(epsilon, 2))
 
-    #rename
+    #part 2
     ox_gen= get_ox_co2(occur, bin_nums, "0", "1")
     co2_scrub = get_ox_co2(occur, bin_nums, "1", "0")
     print(int(ox_gen, 2) * int(co2_scrub, 2))
