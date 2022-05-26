@@ -3,27 +3,26 @@ def get_init_list():
         return list(map(lambda x: int(x), f.read().split(',')))
 
 
-def update_fish(fish):
-    for i in range(0, len(fish)):
-        if fish[i] > 0:
-            fish[i] -= 1
-        else:
-            fish[i] = 6
-            fish.append(8)
-    return fish
+def populate_occur_list(fish):
+    occur_list = [0] * 9
+    for f in fish:
+        occur_list[f] += 1
+    return occur_list
 
 
-# returns fish count after given num of days
-def get_fish_count(fish, days):
+def simulate_days(occur_list, days):
     for i in range(0, days):
-        fish = update_fish(fish)
-    return len(fish)
+        reproducing = occur_list[0]
+        occur_list = occur_list[1:] + occur_list[:1]
+        occur_list[6] += reproducing
+    return sum(occur_list)
 
 
 def main():
     fish = get_init_list()
-    num_fish = get_fish_count(fish, 80)
-    print(num_fish)
+    occur_list = populate_occur_list(fish)
+    res = simulate_days(occur_list, 256)
+    print(res)
 
 
 if __name__ == "__main__":
