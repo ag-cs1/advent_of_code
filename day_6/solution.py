@@ -20,9 +20,18 @@ def simulate_days(occur_list, days):
 
 def main():
     fish = get_init_list()
+
+    #PART 1
+    occur_list = populate_occur_list(fish)
+    res = simulate_days(occur_list, 80)
+    print(res)
+
+    #PART 2
     occur_list = populate_occur_list(fish)
     res = simulate_days(occur_list, 256)
     print(res)
+
+
 
 
 if __name__ == "__main__":
