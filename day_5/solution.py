@@ -35,7 +35,20 @@ def plot_diagonal_line(x1, y1, x2, y2, grid):
     return grid
 
 
-def populate_grid(lines, grid):
+def populate_grid_no_diagonal(lines, grid):
+    for line in list(lines):
+        x1, y1, x2, y2 = int(line[0][0]), int(
+            line[0][1]), int(line[1][0]), int(line[1][1])
+        if (x1 == x2):
+            for y in range(min(y1, y2), max(y1, y2) + 1):
+                grid[y, x1] += 1
+        if (y1 == y2):
+            for x in range(min(x1, x2), max(x1, x2) + 1):
+                grid[y1, x] += 1
+    return grid
+
+
+def populate_grid_diagonal(lines, grid):
     for line in list(lines):
         x1, y1, x2, y2 = int(line[0][0]), int(
             line[0][1]), int(line[1][0]), int(line[1][1])
@@ -63,8 +76,15 @@ def main():
     lines = []
     lines = list(map(line_to_coord, get_text()))
 
+    # part 1
     grid = create_grid(lines)
-    grid = populate_grid(lines, grid)
+    grid = populate_grid_no_diagonal(lines, grid)
+    num_points = find_intersections(grid)
+    print(num_points)
+
+    # part 2
+    grid = create_grid(lines)
+    grid = populate_grid_diagonal(lines, grid)
     num_points = find_intersections(grid)
     print(num_points)
 
