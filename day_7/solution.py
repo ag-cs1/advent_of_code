@@ -33,6 +33,7 @@ def populate_all_distances(init_distance):
     return distances
 
 
+# part 1
 def calculate_fuel_cost(distance_list):
     sum = 0
     for i in range(0, len(distance_list)):
@@ -40,8 +41,24 @@ def calculate_fuel_cost(distance_list):
     return sum
 
 
+# part 1
 def get_min_fuel_cost(distances):
     fuel_costs = list(map(calculate_fuel_cost, distances))
+    return min(fuel_costs)
+
+
+# part 2
+def calculate_fuel_cost_2(distance_list):
+    sum = 0
+    for i in range(0, len(distance_list)):
+        cost = (i * (i + 1))/2
+        sum += (cost * distance_list[i])
+    return sum
+
+
+# part 2
+def get_min_fuel_cost_2(distances):
+    fuel_costs = list(map(calculate_fuel_cost_2, distances))
     return min(fuel_costs)
 
 
@@ -49,10 +66,14 @@ def main():
     crabs = parse_text()
     init_distance = populate_init_distance(crabs)
     distances = populate_all_distances(init_distance)
+
+    #part 1
     min = get_min_fuel_cost(distances)
     print(min)
 
-    #distances = distances[1:] + distances[:1]
+    #part 2
+    min2 = get_min_fuel_cost_2(distances)
+    print(min2)
 
 
 if __name__ == "__main__":
