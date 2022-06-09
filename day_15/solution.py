@@ -40,14 +40,12 @@ def dijkstras(start, end, graph):
     spt_set = set()
     distances = {x: sys.maxsize for x in graph}
     distances[start] = 0
-    counter = 0
     while len(spt_set) < len(graph):
         u = get_min_distance(distances, spt_set)
         spt_set.add(u)
         for adj_v in graph[u]:
             if (distances[u] + graph[u][adj_v]) < distances[adj_v]:
                 distances[adj_v] = distances[u] + graph[u][adj_v]
-        counter += 1
     return(distances[end])
 
 
