@@ -1,4 +1,3 @@
-
 from math import prod
 
 
@@ -30,18 +29,16 @@ def parse_operator(bin_str):
     values = []
     if len_type_id == '0':
         length, bin_str = parse_segment(bin_str, 15)
-        length = int(length, 2)
-        sub_bit_str, bin_str = parse_segment(bin_str, length)
+        sub_bit_str, bin_str = parse_segment(bin_str, int(length, 2))
         while len(sub_bit_str) > 0:
             value, sub_bit_str = parse_packet(sub_bit_str)
             values.append(value)
-        return values, bin_str
     else:
         length, bin_str = parse_segment(bin_str, 11)
         for i in range(int(length, 2)):
             value, bin_str = parse_packet(bin_str)
             values.append(value)
-        return values, bin_str
+    return values, bin_str
 
 
 def parse_packet(bin_str):
@@ -58,7 +55,6 @@ def parse_packet(bin_str):
 
 
 def calculate_operation(values, type):
-    res = 0
     if type == 0:
         res = sum(values)
     elif type == 1:
