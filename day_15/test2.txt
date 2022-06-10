@@ -1,3 +1,21 @@
 116
 138
 213
+
+def calculate_operation(values, type):
+    res = 0
+    if type == 0:
+        res = sum(values)
+    elif type == 1:
+        res = prod(values)
+    elif type == 2:
+        res = min(values)
+    elif type == 3:
+        res = max(values)
+    elif type == 5:
+        res = (lambda x, y: 1 if x > y else y)(values[0], values[1])
+    elif type == 6:
+        res = (lambda x, y: 1 if x < y else y)(values[0], values[1])
+    elif type == 7:
+        res = (lambda x, y: 1 if x == y else y)(values[0], values[1])
+    return res
